@@ -192,7 +192,6 @@ def evaluate_model(model, X_test, y_test, feature_names):
     mse = mean_squared_error(y_test, predictions)
     rmse = np.sqrt(mse)
 
-    # Print metrics
     print("\n=== Model Performance ===")
     print(f"R² Score: {r2:.4f}")
     print(f"  → Model explains {r2 * 100:.2f}% of the variation in house prices")
@@ -200,17 +199,14 @@ def evaluate_model(model, X_test, y_test, feature_names):
     print(f"\nRMSE: ${rmse:,.2f}")
     print(f"  → On average, predictions are off by about ${rmse:,.2f}")
 
-    # Feature importance
     print("\n=== Feature Importance ===")
     importance = np.abs(model.coef_)
     feature_importance = list(zip(feature_names, importance))
     feature_importance.sort(key=lambda x: x[1], reverse=True)
 
-    # Print all features ranked
     for i, (name, score) in enumerate(feature_importance, start=1):
         print(f"{i}. {name}: {score:.4f}")
 
-    # Return predictions OUTSIDE loop
     return predictions
 
 
